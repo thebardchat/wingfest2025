@@ -1,0 +1,133 @@
+# wingfest2025
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WingFest 2025 - Hazel Green High School</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff0000;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            border-radius: 10px;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #cc0000;
+        }
+        .countdown, .wing-counter {
+            font-size: 1.5em;
+            margin: 20px 0;
+            background-color: #ff0000;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .countdown span, .wing-counter span {
+            color: #000;
+            font-weight: bold;
+        }
+        .info {
+            font-size: 1.2em;
+            margin: 20px 0;
+            background-color: #ff0000;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WingFest & Car Show 2025 🐔🔥🌶️</h1>
+        <p>Support Hazel Green High School Trojans Football!</p>
+        <a href="https://secure3.myschoolfees.com/guest_home.aspx?sid=223&feegroupid=27790" class="button" onclick="setParticipantName()">Register Now! (Participant: Pierce Cassway Brazelton)</a>
+        <p><strong>Important:</strong> When registering, please add "Pierce Cassway Brazelton" in the comments section!</p>
+        <div class="countdown" id="countdown">
+            Countdown to May 17th, 11:00 AM: <span id="timer">Loading...</span>
+        </div>
+        <div class="wing-counter">
+            Wings Devoured: <span id="wingCounter">0</span>
+        </div>
+        <div class="info">
+            <h2>WingFest & Car Show Details 🐔🔥🌶️</h2>
+            <p>Join us for a day of delicious wings, thrilling car and bike shows, and exciting competitions at Hazel Green High School!</p>
+            <p><strong>Car & Bike Show:</strong> 11:00 AM - 2:00 PM</p>
+            <p><strong>WingFest Cookoff:</strong> 2:00 PM - 5:30 PM</p>
+            <p><strong>Location:</strong> 14380 Hwy 231-431 N, Hazel Green, AL 35750</p>
+            <p><strong>Activities:</strong> Cars, shopping, food, music, and inflatables!</p>
+            <p><strong>Car Show Registration:</strong> $20 for cars, $15 for motorcycles (pre-registration ends May 16th; day of event: $25 cars, $20 bikes)</p>
+            <p><strong>Awards:</strong> Best of Show, Best Paint, Best Interior, Coach's Choice (cars); Best Chrome Detail, Best Paint, Best Sound, Coach's Choice (bikes)</p>
+            <p><strong>Vendors & Food Trucks:</strong> Hootenanny BBQ, Best Wings, CPT Cameron Whitlow, Coach Darryl Crutcher, and more!</p>
+            <p><strong>Contact:</strong> Call or text (256) 836-2854 or email hgtdclub@gmail.com for more info or to be a sponsor!</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script>
+        // Set participant name in localStorage to pre-fill the form (if supported by the site)
+        function setParticipantName() {
+            localStorage.setItem('participantName', 'Pierce Cassway Brazelton');
+        }
+
+        // Countdown Timer to May 17, 2025, 11:00 AM
+        const eventDate = dayjs('2025-05-17T11:00:00');
+        const timerElement = document.getElementById('timer');
+
+        function updateCountdown() {
+            const now = dayjs();
+            const duration = eventDate.diff(now); // Difference in milliseconds
+
+            if (duration <= 0) {
+                timerElement.textContent = "Event Started!";
+                return;
+            }
+
+            const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((duration % (1000 * 60)) / 1000);
+
+            timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+                setInterval(updateCountdown, 1000);
+
+        // Wing Counter (0 to 1 billion, then restarts)
+        const wingCounterElement = document.getElementById('wingCounter');
+        let wings = 0;
+        const maxWings = 1000000000;
+
+        function updateWingCounter() {
+            wings = (wings + 1) % maxWings;
+            wingCounterElement.textContent = wings.toLocaleString();
+        }
+
+        setInterval(updateWingCounter, 50); // Increment every 50ms for a fun, fast effect
+    </script>
+</body>
+</html>
